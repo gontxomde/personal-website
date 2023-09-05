@@ -1,0 +1,36 @@
+---
+import type { string } from "astro/zod";
+import MainHead from "./MainHead.astro";
+import Footer from "../components/Footer.astro";
+import Nav from "../components/Nav.astro";
+
+interface Props{
+    title: string;
+    description: string
+}
+
+const { 
+    title = "Gonzalo Izaguirre", 
+    description= "My musings about the Astro framework" 
+} = Astro.props as Props
+
+// style import
+
+---
+
+<html lang="en">
+	<div class="justify-between flex flex-col h-screen">
+        <MainHead title={title} description={description}/>
+        <body class="bg-white dark:bg-black">
+                <Nav/>
+                <main>
+                    <slot>
+                        Default Slot
+                    </slot>
+                </main>
+        
+                <Footer/>
+        </body>
+    </div>
+    <meta name="description" content={description} />
+</html>
